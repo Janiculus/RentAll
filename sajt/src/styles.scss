@@ -1,54 +1,17 @@
 /* You can add global styles to this file, and also import other style files */
 /* Container needed to position the button. Adjust the width as needed */
-.containers {
-  position: relative;
-  width: 25%;
-}
-
-/* Make the image responsive */
-.containers img {
-  width: 250px;
-  height: auto;
-}
-
-/* Style the button and place it in the middle of the container/image */
-.containers .btn {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  -ms-transform: translate(-50%, -50%);
-  background-color: #555;
-  color: white;
-  font-size: 16px;
-  padding: 12px 24px;
-  border: none;
-  cursor: pointer;
-  border-radius: 5px;
-}
-
-.containers .btn:hover {
-  background-color: black;
-}
-
-
-img {
-  border-radius: 50%;
-}
-
-body, html {
-  height: 100%;
-}
-
 * {
   box-sizing: border-box;
+
 }
 .bg-img {
   /* The image used */
-  background-image: url("https://avatanplus.com/files/resources/original/57493c9820b8a154f614b246.jpg");
-
+  background-image: url("https://storage.picsave.pp.ua/download/0/1077");
+  margin: 0;
+  padding: 0;
+  font-family: sans-serif;
   /* Control the height of the image */
-  min-height: 1440px;
+  min-height: 100vh;
 
   /* Center and scale the image nicely */
   background-position: center;
@@ -58,44 +21,6 @@ body, html {
 }
 
 /* Add styles to the form container */
-.containere {
-  position: absolute;
-  right: 0;
-  margin: 20px;
-  max-width: 300px;
-  padding: 16px;
-  background-color: white;
-}
-
-/* Full-width input fields */
-input[type=text], input[type=password] {
-  width: 100%;
-  padding: 20px;
-  margin: 5px 0 22px 0;
-  border: none;
-  background: #f1f1f1;
-}
-
-input[type=text]:focus, input[type=password]:focus {
-  background-color: #ddd;
-  outline: none;
-}
-
-/* Set a style for the submit button */
-.btn {
-  background-color: #FF69B4;
-  color: white;
-  padding: 16px 20px;
-  border: none;
-  cursor: pointer;
-  width: 100%;
-  opacity: 1;
-}
-
-.btn:hover {
-  opacity: 1;
-}
-
 
 
 
@@ -124,7 +49,7 @@ input[type=text]:focus, input[type=password]:focus {
 
 /* Style the current/active link */
 .navbar a.active {
-  background-color: deeppink;
+  background: linear-gradient(to right, #ff000b,#ffad06 );
 }
 
 /* Add responsiveness - on screens less than 500px, make the navigation links appear on top of each other, instead of next to each other */
