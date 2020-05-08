@@ -5,29 +5,27 @@ import { AppComponent } from './app.component';
 import { UserComponent } from './user/user.component';
 import { HomePageComponent } from './home-page/home-page.component';
 import {RouterModule} from '@angular/router';
-import { ProductListComponent } from './product-list/product-list.component';
-import { HttpClientModule } from '@angular/common/http';
-import { ProductService } from './services/product.service';
+import { ViewCategoryModule } from './view-category/view-category.module';
+import { CategoryComponent } from './view-category/category/category.component';
 
 const routes = [
   {path: '', component: HomePageComponent},
   {path: 'user', component: UserComponent},
-  {path: 'product-list', component: ProductListComponent}
+  {path: 'category', component: CategoryComponent}
 ];
 
 @NgModule({
   declarations: [
     AppComponent,
     UserComponent,
-    HomePageComponent,
-    ProductListComponent
+    HomePageComponent
   ],
   imports: [
     BrowserModule,
     RouterModule.forRoot(routes),
-    HttpClientModule
+    ViewCategoryModule
   ],
-  providers: [ProductService],
+  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
