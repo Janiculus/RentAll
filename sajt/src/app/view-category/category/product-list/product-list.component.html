@@ -1,21 +1,39 @@
-<table class="table">
 
-    <thead class="thead-dark">
+
+<div class="container ">
+ 
+
+  <div class="card border-0 shadow my-5">
+
+    <div class="card-body p-5">
+
+      <table class="table bg-light">
+
+        <thead class="thead-dark">
         <tr>
-            <th></th>
-            <th>Name</th>
-            <th>Price</th>
+          <th></th>
+          <th>Name</th>
+          <th>Price</th>
         </tr>
-    </thead>
+        </thead>
 
-    <tbody>
+        <tbody>
         <tr *ngFor="let tempProduct of products">
-            <td class="align-middle">
-                <img src="{{ tempProduct.imageUrl }}" width="150px" height="150px"/>
-            </td>
-            <td class="align-middle">{{ tempProduct.name }}</td>
-            <td class="align-middle">{{ tempProduct.unitPrice | currency: 'PLN'}}</td>
+          <td class="align-middle">
+            <img src="{{ tempProduct.imageUrl }}" width="150px" height="150px"/>
+            <button class="btn" routerLink="/user">take</button>
+          </td>
+          <td class="align-middle">{{ tempProduct.name }}</td>
+          <td class="align-middle">{{ tempProduct.unitPrice | currency: 'PLN'}}</td>
         </tr>
-    </tbody>
+        </tbody>
 
-</table>
+      </table>
+    <div style="height: 700px"></div>
+    </div>
+  </div>
+
+
+</div>
+
+

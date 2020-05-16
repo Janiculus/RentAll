@@ -1,2 +1,23 @@
-<p>category works!</p>
-<app-product-list></app-product-list>
+<div style="background: url(https://wallpaperaccess.com/full/2157.png)" class="page-holder bg-cover">
+
+    <div class="navbar">
+      <a href="#" routerLink="/">Home</a>
+      <a class="active" href="#" routerLink="/category">Categories</a>
+      <a href="#">Contact</a>
+      <a href="#" routerLink="/user">Login</a>
+    </div>
+
+    <!--Menu Sidebar Start-->
+    <aside class="menu-sidebar">
+
+        <app-product-category-menu></app-product-category-menu>
+
+    </aside>
+
+    <!--Menu Sidebar end-->
+
+    <!-- Header Desktop-->
+
+    <app-search></app-search>
+    
+<router-outlet></router-outlet>

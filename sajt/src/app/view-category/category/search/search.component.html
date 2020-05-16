@@ -1,0 +1,11 @@
+<div class="active-cyan-4 mb-4">
+    <input #myInput type="text" 
+    placeholder="Search"
+    aria-label="Search"
+    class="form-control" 
+     (keyup.enter)="doSearch(myInput.value)" />
+
+     <button (click)="doSearch(myInput.value)">
+         Search
+     </button>
+</div>
