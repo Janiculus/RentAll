@@ -8,8 +8,12 @@ import {RouterModule, Routes} from '@angular/router';
 import { ViewCategoryModule } from './view-category/view-category.module';
 import { CategoryComponent } from './view-category/category/category.component';
 import { ProductListComponent } from './view-category/category/product-list/product-list.component';
+import { ProductDetailsComponent } from './view-category/category/product-details/product-details.component';
 
 const productRoutes: Routes = [
+  {path: 'products/:id', component: ProductDetailsComponent},
+  {path: ':id/products/:id', component: ProductDetailsComponent},
+  {path: 'search/:keyword/products/:id', component: ProductDetailsComponent},
   {path: 'search/:keyword', component: ProductListComponent},
   {path: ':id', component: ProductListComponent},
   {path: '', component: ProductListComponent},
