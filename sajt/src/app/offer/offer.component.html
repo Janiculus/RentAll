@@ -1,58 +1,58 @@
-
 <div class="navbar">
   <a class="active" href="#" routerLink="/">Home</a>
   <a href="#" routerLink="/category">Categories</a>
   <a href="#" routerLink="/offer">Offer</a>
   <a href="#" routerLink="/user">Login</a>
 </div>
+<div class="container">
+  <form [formGroup]="OfferForm">
+    <div class="row">
+      <div class="col-25">
+        <label for="name">Name</label>
+      </div>
+      <div class="col-75">
+        <input type="text" id="name" name="Name" placeholder="Your name..." formControlName="Name">
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-25">
+        <label for="unitPrice">unitPrice</label>
+      </div>
+      <div class="col-75">
+        <input type="text" id="unitPrice" name="initPrice" placeholder="approximate price..." formControlName="unitPrice">
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-25">
+        <label for="City">City</label>
+      </div>
+      <div class="col-75">
+        <select id="City" name="City" formControlName="City">
+          <option value="Poznan">Poznan</option>
+          <option value="Warszawa">Warszawa</option>
+          <option value="Wroclaw">Wroclaw</option>
+        </select>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-25">
+        <label for="description">Description</label>
+      </div>
+      <div class="col-75">
+        <textarea id="description" name="Description" placeholder="give some description about offer..." formControlName="Description" style="height:200px"></textarea>
+      </div>
+    </div>
+</form>
 
-<div class="bg-img">
-  <div class="logo">
-    <img src="../../assets/images/RENTALL_free-file-2.png">
-  </div>
-  <div class="search-box">
-    <input type="text" name="" class="search-txt" placeholder="Search"/>
-    <a class="search-btn" href="#">
-      <img class="fa-search" src="https://d2gg9evh47fn9z.cloudfront.net/800px_COLOURBOX5621738.jpg">
-    </a>
 
 
-  </div>
-  <b href="#" routerLink="/category/1">
-    <span></span>
-    <span></span>
-    <span></span>
-    <span></span>
-    Home
-  </b>
-  <b href="#" routerLink="/category/1">
-    <span></span>
-    <span></span>
-    <span></span>
-    <span></span>
-    Device
-  </b>
-  <b href="#" routerLink="/category/2">
-    <span></span>
-    <span></span>
-    <span></span>
-    <span></span>
- Garden
-  </b>
-  <b href="#">
-    <span></span>
-    <span></span>
-    <span></span>
-    <span></span>
-    Other
-  </b>
 
-  <div class="word">
-    <span class="text1">Trust men and they</span>
-    <span class="text2">will be true to you</span>
-  </div>
+<form [formGroup]="OfferForm" (ngSubmit)="onSubmit()"></form>
+
+<button type="submit" [disabled]="!OfferForm.valid">Submit</button>
 
 </div>
+
 
 <footer id="footer" class="footer-1">
   <div class="main-footer widgets-dark typo-light">
@@ -132,3 +132,4 @@
     </div>
   </div>
 </footer>
+

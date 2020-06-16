@@ -9,7 +9,11 @@ import { ViewCategoryModule } from './view-category/view-category.module';
 import { CategoryComponent } from './view-category/category/category.component';
 import { ProductListComponent } from './view-category/category/product-list/product-list.component';
 import { ProductDetailsComponent } from './view-category/category/product-details/product-details.component';
+import { OfferComponent } from './offer/offer.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
+import { HttpClientModule } from '@angular/common/http';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 const productRoutes: Routes = [
   {path: 'products/:id', component: ProductDetailsComponent},
   {path: ':id/products/:id', component: ProductDetailsComponent},
@@ -24,6 +28,7 @@ const productRoutes: Routes = [
 const routes: Routes = [
   {path: '', component: HomePageComponent},
   {path: 'user', component: UserComponent},
+  {path: 'offer', component: OfferComponent},
   {path: 'category', component: CategoryComponent, children: productRoutes}
 ];
 
@@ -31,12 +36,16 @@ const routes: Routes = [
   declarations: [
     AppComponent,
     UserComponent,
-    HomePageComponent
+    HomePageComponent,
+    OfferComponent
   ],
   imports: [
     BrowserModule,
     RouterModule.forRoot(routes),
-    ViewCategoryModule
+    ViewCategoryModule,
+    HttpClientModule,
+    ReactiveFormsModule,
+    NgbModule
   ],
   providers: [],
   bootstrap: [AppComponent]
