@@ -1,7 +1,10 @@
+
+<div class="bg-imgg">
+
 <div class="navbar" xmlns="http://www.w3.org/1999/html">
-  <a class="active" href="#" routerLink="/">Home</a>
+  <a  href="#" routerLink="/">Home</a>
   <a href="#" routerLink="/category">Categories</a>
-  <a href="#" routerLink="/offer">Offer</a>
+  <a class="active" href="#" routerLink="/offer">Offer</a>
   <a href="#" routerLink="/user">Login</a>
 </div>
 
@@ -42,57 +45,61 @@
       </div>
     </div>
 </form> -->
+
 <div class="container">
+  <div class="card border-0 shadow my-5">
+    <div class="card-body p-3">
+
 
   <div class="row">
-    <div class="col-25">
+    <div class="col-6">
 <label>Product Name:</label>
     </div>
-    <div class="col-75">
+    <div class="col-6">
 <input  [(ngModel)]="product.name" required>
     </div>
   </div>
 
 
 <div class="row">
-  <div class="col-25">
+  <div class="col-6">
 <label>Description:</label>
   </div>
-<div class="col-75">
+<div class="col-6">
 
   <textarea required="add description,please" [(ngModel)]="product.description"></textarea>
 </div>
 </div>
 
   <div class="row">
-    <div class="col-25">
+    <div class="col-6">
 <label>Price:</label>
     </div>
-    <div class="col-75">
+    <div class="col-6">
 <input [(ngModel)]="product.unitPrice"/>
     </div>
   </div>
 <div class="row">
-  <div class="col-25">
+  <div class="col-6">
 <label>First Name: </label>
   </div>
-  <div class="col-25">
+  <div class="col-6">
 <input  [(ngModel)]="product.firstName"/>
   </div>
 </div>
   <div class="row">
-    <div class="col-25">
+    <div class="col-6">
 <label>Phone Number: </label>
     </div>
-    <div class="col-75">
+    <div class="col-6">
 <input  [(ngModel)]="product.phone_number"/>
     </div>
   </div>
   <div class="row">
-    <div class="col-25">
+    <div class="col-6">
 <label>City:</label>
     </div>
-    <div class="col-75">
+    <div class="col-6">
 <select  [(ngModel)]="product.city">
   <option value="Warszawa">Warszawa</option>
   <option value="Kraków">Kraków</option>
@@ -101,10 +108,10 @@
     </div>
   </div>
   <div class="row">
-    <div class="col-25">
+    <div class="col-6">
 <label>Category:</label>
     </div>
-    <div class="col-75">
+    <div class="col-6">
 <select [(ngModel)]="product.category" id="Category" name="Category" >
   <option value="http://localhost:8080/api/product-category/1">Devices</option>
   <option value="http://localhost:8080/api/product-category/2">Garden</option>
@@ -113,67 +120,76 @@
   </div>
 
 <!-- <form [formGroup]="OfferForm" (ngSubmit)="onSubmit()"></form> -->
-<br>
+<br><meta http-equiv="refresh" content="URL=http://localhost:4200/category">
 <input type="submit" (click)="addProduct()" />
+
+</div>
+
+      <div style="height: 100px"></div>
+    </div>
+  </div>
 
 </div>
 
 
 
 
-<!-- Footer -->
-<footer class="page-footer font-small cyan darken-3">
 
-  <!-- Footer Elements -->
-  <div class="container">
 
-    <!-- Grid row-->
-    <div class="row">
 
-      <!-- Grid column -->
-      <div class="col-md-12 py-5">
-        <div class="mb-5 flex-center">
+  <!-- Footer -->
+  <!--<footer class="page-footer font-small cyan darken-3">-->
 
-          <!-- Facebook -->
-          <a class="fb-ic">
-            <i class="fab fa-facebook-f fa-lg white-text mr-md-5 mr-3 fa-2x"> </i>
-          </a>
-          <!-- Twitter -->
-          <a class="tw-ic">
-            <i class="fab fa-twitter fa-lg white-text mr-md-5 mr-3 fa-2x"> </i>
-          </a>
-          <!-- Google +-->
-          <a class="gplus-ic">
-            <i class="fab fa-google-plus-g fa-lg white-text mr-md-
+  <!--  &lt;!&ndash; Footer Elements &ndash;&gt;-->
+  <!--  <div class="container">-->
 
-5 mr-3 fa-2x"> </i>
-          </a>
-          <!--Linkedin -->
-          <a class="li-ic">
-            <i class="fab fa-linkedin-in fa-lg white-text mr-md-5 mr-3 fa-2x"> </i>
-          </a>
-          <!--Instagram-->
-          <a class="ins-ic">
-            <i class="fab fa-instagram fa-lg white-text mr-md-5 mr-3 fa-2x"> </i>
-          </a>
-          <!--Pinterest-->
-          <a class="pin-ic">
-            <i class="fab fa-pinterest fa-lg white-text fa-2x"> </i>
-          </a>
-        </div>
-      </div>
-      <!-- Grid column -->
+  <!--    &lt;!&ndash; Grid row&ndash;&gt;-->
+  <!--    <div class="row">-->
 
-    </div>
-    <!-- Grid row-->
+  <!--      &lt;!&ndash; Grid column &ndash;&gt;-->
+  <!--      <div class="col-md-12 py-5">-->
+  <!--        <div class="mb-5 flex-center">-->
 
-  </div>
-  <!-- Footer Elements -->
+  <!--          &lt;!&ndash; Facebook &ndash;&gt;-->
+  <!--          <a class="fb-ic">-->
+  <!--            <i class="fab fa-facebook-f fa-lg white-text mr-md-5 mr-3 fa-2x"> </i>-->
+  <!--          </a>-->
+  <!--          &lt;!&ndash; Twitter &ndash;&gt;-->
+  <!--          <a class="tw-ic">-->
+  <!--            <i class="fab fa-twitter fa-lg white-text mr-md-5 mr-3 fa-2x"> </i>-->
+  <!--          </a>-->
+  <!--          &lt;!&ndash; Google +&ndash;&gt;-->
+  <!--          <a class="gplus-ic">-->
+  <!--            <i class="fab fa-google-plus-g fa-lg white-text mr-md- -->
 
-  <!-- Copyright -->
-  <div class="footer-copyright text-center py-3">
-  </div>
-  <!-- Copyright -->
+  <!--5 mr-3 fa-2x"> </i>-->
+  <!--          </a>-->
+  <!--          &lt;!&ndash;Linkedin &ndash;&gt;-->
+  <!--          <a class="li-ic">-->
+  <!--            <i class="fab fa-linkedin-in fa-lg white-text mr-md-5 mr-3 fa-2x"> </i>-->
+  <!--          </a>-->
+  <!--          &lt;!&ndash;Instagram&ndash;&gt;-->
+  <!--          <a class="ins-ic">-->
+  <!--            <i class="fab fa-instagram fa-lg white-text mr-md-5 mr-3 fa-2x"> </i>-->
+  <!--          </a>-->
+  <!--          &lt;!&ndash;Pinterest&ndash;&gt;-->
+  <!--          <a class="pin-ic">-->
+  <!--            <i class="fab fa-pinterest fa-lg white-text fa-2x"> </i>-->
+  <!--          </a>-->
+  <!--        </div>-->
+  <!--      </div>-->
+  <!--      &lt;!&ndash; Grid column &ndash;&gt;-->
 
-</footer>
-<!-- Footer -->
+  <!--    </div>-->
+  <!--    &lt;!&ndash; Grid row&ndash;&gt;-->
+
+  <!--  </div>-->
+  <!--  &lt;!&ndash; Footer Elements &ndash;&gt;-->
+
+  <!--  &lt;!&ndash; Copyright &ndash;&gt;-->
+  <!--  <div class="footer-copyright text-center py-3">-->
+  <!--  </div>-->
+  <!--  &lt;!&ndash; Copyright &ndash;&gt;-->
+
+  <!--</footer>-->
+  <!--&lt;!&ndash; Footer &ndash;&gt;-->
