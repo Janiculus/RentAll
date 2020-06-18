@@ -16,6 +16,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 const productRoutes: Routes = [
+  {path: 'citySearch/:keyword/products/:id', component: ProductDetailsComponent},
   {path: 'citySearch/:keyword', component: ProductListComponent},
   {path: 'products/:id', component: ProductDetailsComponent},
   {path: ':id/products/:id', component: ProductDetailsComponent},
