@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
 import { FormBuilder } from '@angular/forms';
 import { Validators } from '@angular/forms';
 import { Product } from '../common/product';
@@ -23,7 +22,8 @@ product = new Product();
 
 
   })
-  constructor(private fb: FormBuilder, private productService:ProductService) { }
+  constructor(private fb: FormBuilder, private productService:ProductService)
+{ }
 
   ngOnInit(): void {
 
@@ -38,4 +38,8 @@ product = new Product();
     // TODO: Use EventEmitter with form value
     console.warn(this.OfferForm.value);
   }
-}
+
+
+
+  }
+

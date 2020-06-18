@@ -8,6 +8,7 @@ import {RouterModule} from "@angular/router";
 import { ProductCategoryMenuComponent } from './category/product-category-menu/product-category-menu.component';
 import { SearchComponent } from './category/search/search.component';
 import { ProductDetailsComponent } from './category/product-details/product-details.component';
+import { CitySearchComponent } from './category/city-search/city-search.component';
 
 
 @NgModule({
@@ -16,7 +17,8 @@ import { ProductDetailsComponent } from './category/product-details/product-deta
     ProductListComponent,
     ProductCategoryMenuComponent,
     SearchComponent,
-    ProductDetailsComponent
+    ProductDetailsComponent,
+    CitySearchComponent
   ],
     imports: [
         CommonModule,

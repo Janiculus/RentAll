@@ -14,7 +14,9 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { FormsModule } from '@angular/forms'
 import { HttpClientModule } from '@angular/common/http';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+
 const productRoutes: Routes = [
+  {path: 'citySearch/:keyword', component: ProductListComponent},
   {path: 'products/:id', component: ProductDetailsComponent},
   {path: ':id/products/:id', component: ProductDetailsComponent},
   {path: 'search/:keyword/products/:id', component: ProductDetailsComponent},

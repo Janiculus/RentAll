@@ -16,4 +16,6 @@ public interface ProductRepository extends JpaRepository<Product, Long> {
 
     // equals to Select * FROM Product p WHERE p.name LIKE CONCAT('%', :name , '$')
     Page<Product> findByNameContaining(@RequestParam("name") String name, Pageable pageable);
+
+    Page<Product> findByCityContaining(@RequestParam("city") String city, Pageable pageable);
 }

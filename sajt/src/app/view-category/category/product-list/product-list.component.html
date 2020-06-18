@@ -27,6 +27,12 @@
           <td class="align-middle">{{ tempProduct.unitPrice | currency: 'PLN'}}</td>
           <td class="align-middle">{{ tempProduct.city }}</td>
         </tr>
+
+        <!-- if products empty then display a message -->
+        <div *ngIf="products?.length == 0" class="alert alert-warning col-md-12" role="alert">
+          No offers found.
+        </div>
+
         </tbody>
 
       </table>

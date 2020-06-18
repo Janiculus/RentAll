@@ -7,12 +7,7 @@
          (keyup.enter)="doSearch(myInput.value)" />
 
 
-  <select class="custom-select" id="inputGroupSelect04">
-    <option selected>Choose your Location</option>
-    <option value="Warszawa">Warszawa</option>
-    <option value="Kraków">Kraków</option>
-    <option value="Łódź">Łódź</option>
-    <option value="Poznań">Poznań</option>
-  </select>
+         <app-city-search></app-city-search>
+  
   <button type="button" class="btn btn-primary btn-lg btn-block" (click)="doSearch(myInput.value)">Search</button>
 </div>

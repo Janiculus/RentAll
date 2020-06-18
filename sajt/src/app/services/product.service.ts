@@ -9,6 +9,7 @@ import { ProductCategory } from '../common/product-category';
   providedIn: 'root'
 })
 export class ProductService {
+  
 
 
   private baseUrl = 'http://localhost:8080/api/products';
@@ -58,6 +59,13 @@ export class ProductService {
     console.log(body);
     return this.httpClient.post(this.baseUrl, body, {'headers': headers});
   }
+
+  searchCityProducts(theKeyword: string) : Observable<Product[]>{
+    const searchUrl = `${this.baseUrl}/search/findByCityContaining/?city=${theKeyword}`;
+
+    return this.getProducts(searchUrl);
+  }
+
 }
 
 interface GetResponseProducts {
