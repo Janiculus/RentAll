@@ -1,6 +1,5 @@
 package com.cookie.rentall.config;
 
-import com.cookie.rentall.entity.Client;
 import com.cookie.rentall.entity.Product;
 import com.cookie.rentall.entity.ProductCategory;
 import javax.persistence.metamodel.EntityType;
@@ -29,7 +28,7 @@ public class MyDataRestConfig implements RepositoryRestConfigurer {
     @Override
     public void configureRepositoryRestConfiguration(RepositoryRestConfiguration config) {
 
-        HttpMethod[] theUnsupportedActions = { HttpMethod.PUT, HttpMethod.POST, HttpMethod.DELETE};
+        HttpMethod[] theUnsupportedActions = { HttpMethod.PUT,  HttpMethod.DELETE};
 
         // disable HTTP methods for Product: PUT, POST and DELETE
         config.getExposureConfiguration()
@@ -44,10 +43,10 @@ public class MyDataRestConfig implements RepositoryRestConfigurer {
                 .withCollectionExposure((metdata, httpMethods) -> httpMethods.disable(theUnsupportedActions));
 
         // disable HTTP methods for Client: PUT, POST and DELETE
-        config.getExposureConfiguration()
-                .forDomainType(Client.class)
-                .withItemExposure((metdata, httpMethods) -> httpMethods.disable(theUnsupportedActions))
-                .withCollectionExposure((metdata, httpMethods) -> httpMethods.disable(theUnsupportedActions));
+//        config.getExposureConfiguration()
+//                .forDomainType(Client.class)
+//                .withItemExposure((metdata, httpMethods) -> httpMethods.disable(theUnsupportedActions))
+//                .withCollectionExposure((metdata, httpMethods) -> httpMethods.disable(theUnsupportedActions));
 
         // call an internal helper method
         exposeIds(config);

@@ -51,6 +51,13 @@ export class ProductService {
     return this.getProducts(searchUrl);
 
   }
+
+  addProduct(product : Product): Observable<any> {
+    const headers = {'content-type': 'application/json'}
+    const body = JSON.stringify(product);
+    console.log(body);
+    return this.httpClient.post(this.baseUrl, body, {'headers': headers});
+  }
 }
 
 interface GetResponseProducts {

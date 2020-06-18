@@ -24,12 +24,15 @@ public class Product {
     @JoinColumn(name = "category_id", nullable = false)
     private ProductCategory category;
 
-    @ManyToOne
-    @JoinColumn(name = "client_id")
-    private Client client;
 
     @Column(name = "name")
     private String name;
+
+    @Column(name = "first_name")
+    private String firstName;
+
+    @Column(name="phone_number")
+    private String phone_number;
 
     @Column(name = "description")
     private String description;
@@ -50,5 +53,9 @@ public class Product {
     @Column(name = "last_updated")
     @UpdateTimestamp
     private Date lastUpdated;
+
+    @Column(name = "city")
+    private String city;
+
 
 }

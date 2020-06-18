@@ -5,13 +5,13 @@
   <a href="#" routerLink="/user">Login</a>
 </div>
 <div class="container">
-  <form [formGroup]="OfferForm">
+  <!-- <form [formGroup]="OfferForm">
     <div class="row">
       <div class="col-25">
         <label for="name">Name</label>
       </div>
       <div class="col-75">
-        <input type="text" id="name" name="Name" placeholder="Your name..." formControlName="Name">
+        <input [(ngModel)]="product.name" type="text" id="name" name="Name" placeholder="Your name..." formControlName="Name">
       </div>
     </div>
     <div class="row">
@@ -19,18 +19,17 @@
         <label for="unitPrice">unitPrice</label>
       </div>
       <div class="col-75">
-        <input type="text" id="unitPrice" name="initPrice" placeholder="approximate price..." formControlName="unitPrice">
+        <input [(ngModel)]="product.unitPrice" type="text" id="unitPrice" name="initPrice" placeholder="approximate price..." formControlName="unitPrice">
       </div>
     </div>
     <div class="row">
       <div class="col-25">
-        <label for="City">City</label>
+        <label for="City">Category</label>
       </div>
       <div class="col-75">
-        <select id="City" name="City" formControlName="City">
-          <option value="Poznan">Poznan</option>
-          <option value="Warszawa">Warszawa</option>
-          <option value="Wroclaw">Wroclaw</option>
+        <select [(ngModel)]="product.category" id="Category" name="Category" formControlName="Category">
+          <option value="http://localhost:8080/api/product-category/1">Devices</option>
+          <option value="http://localhost:8080/api/product-category/2">Garden</option>
         </select>
       </div>
     </div>
@@ -42,16 +41,41 @@
         <textarea id="description" name="Description" placeholder="give some description about offer..." formControlName="Description" style="height:200px"></textarea>
       </div>
     </div>
-</form>
+</form> -->
+
+<label>Product Name:</label>
+<input [(ngModel)]="product.name"/>
+
+<label>Description:</label>
+<input [(ngModel)]="product.description"/>
+
+<label>Price:</label>
+<input [(ngModel)]="product.unitPrice"/>
+
+<label>First Name: </label>
+<input [(ngModel)]="product.firstName"/>
+
+<label>Phone Number: </label>
+<input [(ngModel)]="product.phone_number"/>
+
+<label>City:</label>
+<select [(ngModel)]="product.city">
+  <option value="Warszawa">Warszawa</option>
+  <option value="Kraków">Kraków</option>
+  <option value="Poznań">Poznań</option>
+</select>
+<label>Category:</label>
+<select [(ngModel)]="product.category" id="Category" name="Category">
+  <option value="http://localhost:8080/api/product-category/1">Devices</option>
+  <option value="http://localhost:8080/api/product-category/2">Garden</option>
+</select>
 
 
+<!-- <form [formGroup]="OfferForm" (ngSubmit)="onSubmit()"></form> -->
 
-
-<form [formGroup]="OfferForm" (ngSubmit)="onSubmit()"></form>
-
-<button type="submit" [disabled]="!OfferForm.valid">Submit</button>
-
+<button type="submit" (click)="addProduct()">Submit</button>
 </div>
+
 
 
 <footer id="footer" class="footer-1">

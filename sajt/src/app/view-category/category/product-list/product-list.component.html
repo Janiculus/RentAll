@@ -7,6 +7,7 @@
           <th></th>
           <th>Name</th>
           <th>Price</th>
+          <th>City</th>
         </tr>
         </thead>
         <tbody>
@@ -24,6 +25,7 @@
           <td class="align-middle" routerLink="products/{{ tempProduct.id }}" >{{ tempProduct.name }}</td>
 
           <td class="align-middle">{{ tempProduct.unitPrice | currency: 'PLN'}}</td>
+          <td class="align-middle">{{ tempProduct.city }}</td>
         </tr>
         </tbody>
 

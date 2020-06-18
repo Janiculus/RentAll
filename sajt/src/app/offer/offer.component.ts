@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { FormBuilder } from '@angular/forms';
 import { Validators } from '@angular/forms';
+import { Product } from '../common/product';
+import { ProductService } from '../services/product.service';
 
 @Component({
   selector: 'app-offer',
@@ -9,6 +11,9 @@ import { Validators } from '@angular/forms';
   styleUrls: ['./offer.component.scss']
 })
 export class OfferComponent implements OnInit {
+
+product = new Product();
+
   OfferForm = this.fb.group({
     name: ['', Validators.required],
     description: [''],
@@ -18,11 +23,17 @@ export class OfferComponent implements OnInit {
 
 
   })
-  constructor(private fb: FormBuilder) { }
+  constructor(private fb: FormBuilder, private productService:ProductService) { }
 
   ngOnInit(): void {
 
   }
+
+  addProduct(){
+    this.productService.addProduct(this.product)
+    .subscribe(data => {})
+  }
+
   onSubmit() {
     // TODO: Use EventEmitter with form value
     console.warn(this.OfferForm.value);

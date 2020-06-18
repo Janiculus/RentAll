@@ -11,7 +11,7 @@ import { ProductListComponent } from './view-category/category/product-list/prod
 import { ProductDetailsComponent } from './view-category/category/product-details/product-details.component';
 import { OfferComponent } from './offer/offer.component';
 import { ReactiveFormsModule } from '@angular/forms';
-
+import { FormsModule } from '@angular/forms'
 import { HttpClientModule } from '@angular/common/http';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 const productRoutes: Routes = [
@@ -37,7 +37,8 @@ const routes: Routes = [
     AppComponent,
     UserComponent,
     HomePageComponent,
-    OfferComponent
+    OfferComponent,
+    
   ],
   imports: [
     BrowserModule,
@@ -45,7 +46,8 @@ const routes: Routes = [
     ViewCategoryModule,
     HttpClientModule,
     ReactiveFormsModule,
-    NgbModule
+    NgbModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
