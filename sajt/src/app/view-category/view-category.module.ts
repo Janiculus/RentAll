@@ -9,7 +9,7 @@ import { ProductCategoryMenuComponent } from './category/product-category-menu/p
 import { SearchComponent } from './category/search/search.component';
 import { ProductDetailsComponent } from './category/product-details/product-details.component';
 import { CitySearchComponent } from './category/city-search/city-search.component';
-
+import { NgbModule} from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [
@@ -23,7 +23,8 @@ import { CitySearchComponent } from './category/city-search/city-search.componen
     imports: [
         CommonModule,
         HttpClientModule,
-        RouterModule
+        RouterModule,
+        NgbModule
     ],
   exports: [
     CategoryComponent,
