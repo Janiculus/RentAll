@@ -60,8 +60,8 @@ export class ProductService {
     return this.httpClient.post(this.baseUrl, body, {'headers': headers});
   }
 
-  searchCityProducts(theKeyword: string) : Observable<Product[]>{
-    const searchUrl = `${this.baseUrl}/search/findByCityContaining/?city=${theKeyword}`;
+  searchCityProducts(cityName: string) : Observable<Product[]>{
+    const searchUrl = `${this.baseUrl}/search/findByCityContaining/?city=${cityName}`;
 
     return this.getProducts(searchUrl);
   }

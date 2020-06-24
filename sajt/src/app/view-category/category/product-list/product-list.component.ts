@@ -25,9 +25,11 @@ export class ProductListComponent implements OnInit {
 }
   listProducts() {
 
-    this.searchMode = this.route.snapshot.paramMap.has('keyword');
-
-    if(this.searchMode) {
+    this.searchMode = this.route.snapshot.paramMap.has('cityName');
+    
+    if(this.route.snapshot.paramMap.has('keyword')) {
+      this.handleSearchProducts();
+    } else if (this.route.snapshot.paramMap.has('cityName')) {
       this.handleCitySearchProducts();
     }
     else {
@@ -36,9 +38,20 @@ export class ProductListComponent implements OnInit {
    
   }
 
-  handleCitySearchProducts() {
+  handleSearchProducts() {
 
     const theKeyword : string = this.route.snapshot.paramMap.get('keyword');
+    this.productService.searchProducts(theKeyword).subscribe(
+      data => {
+        this.products = data;
+      }
+    )
+  }
+
+
+  handleCitySearchProducts() {
+
+    const theKeyword : string = this.route.snapshot.paramMap.get('cityName');
     this.productService.searchCityProducts(theKeyword).subscribe(
       data => {
         this.products = data;

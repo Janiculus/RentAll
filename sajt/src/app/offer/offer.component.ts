@@ -32,11 +32,15 @@ product = new Product();
   addProduct(){
     this.productService.addProduct(this.product)
     .subscribe(data => {})
+    history.go(0);
   }
 
   onSubmit() {
     // TODO: Use EventEmitter with form value
     console.warn(this.OfferForm.value);
+
+    
+
   }
 
 
