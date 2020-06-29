@@ -13,6 +13,7 @@ export class OfferComponent implements OnInit {
 
 product = new Product();
 
+
   OfferForm = this.fb.group({
     name: ['', Validators.required],
     description: [''],
@@ -29,7 +30,9 @@ product = new Product();
 
   }
 
+
   addProduct(){
+    this.product.active = true;
     this.productService.addProduct(this.product)
     .subscribe(data => {})
     history.go(0);

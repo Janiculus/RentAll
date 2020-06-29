@@ -16,7 +16,7 @@ export class CitySearchComponent implements OnInit {
   doCitySearch(selectObject) {
 
     console.log(`value=${selectObject}`);
-    this.router.navigateByUrl(`category/citySearch/${selectObject}`);
+    this.router.navigateByUrl(`/category/citySearch/${selectObject}`);
   }
 
 }

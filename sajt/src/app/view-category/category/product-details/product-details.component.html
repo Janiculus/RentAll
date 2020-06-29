@@ -24,8 +24,15 @@
           
         </div>
         <div class="col-mb-2">
-          <button type="button" class="btn btn-success">Success</button>
-        </div>
+        <div *ngIf="product.active; then content else other_content">
+        </div> 
+          <ng-template #content>
+          <button type="button" class="btn btn-success">Active</button>
+        </ng-template>
+        <ng-template #other_content>
+            <button type="button" class="btn btn-danger">Busy</button>
+        </ng-template>
+      </div>
       </div>
       <h3 class="my-4">Photos</h3>
 
