@@ -65,6 +65,13 @@ export class ProductService {
 
   }
 
+  takeProduct(theProudtctId: number): Observable<any> {
+    const takeUrl = `${this.baseUrl}/${theProudtctId}`;
+    const headers = {'content-type' : 'application/json'}
+    const body = {'active' : 'false'}
+    return this.httpClient.patch(takeUrl, body, {'headers': headers});
+  }
+
   addProduct(product : Product): Observable<any> {
     const headers = {'content-type': 'application/json'}
     const body = JSON.stringify(product);

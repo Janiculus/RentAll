@@ -32,4 +32,14 @@ export class ProductDetailsComponent implements OnInit {
     )
   }
 
+  takeProduct() {
+    const productId : number =+this.route.snapshot.paramMap.get('id');
+
+    this.productService.takeProduct(productId).subscribe(
+      data => {
+        this.product = data;
+      }
+    )
+  }
+
 }
