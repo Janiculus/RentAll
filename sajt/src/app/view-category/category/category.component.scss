@@ -1,6 +1,47 @@
-.navbar a.active {
-  background: linear-gradient(to right, #08ffdc, #ce4ded);
+.row {
+
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  padding-left: 40px;
+  vertical-align: middle;
 }
+
+.column {
+  width:50%;
+}
+.column img {
+  margin-top: 30px;
+  margin-left: 170px;     //32px
+  vertical-align: middle;
+}
+
+/* Clear floats after the columns */
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+
+.navbar {
+
+  background-color: black;
+}
+.navbar a.active {
+//  background: linear-gradient(to right, #08ffdc, #ce4ded);
+  background: black;
+  border-radius: 5px;
+  border: 2px solid #A8D0E6;
+}
+
+.navbar a:hover {
+
+  background-color: transparent;
+  border-radius: 5px;
+  border: 2px solid #A8D0E6;
+}
+
 body {
   display:grid;
   grid-template-rows: 1fr auto;
@@ -113,10 +154,10 @@ footer.light .footer-copyright{	background: none repeat scroll 0 0 rgba(255, 255
 .widget.no-box{	padding: 0;	background-color: transparent;	margin-bottom: 40px;
   box-shadow: none; -webkit-box-shadow: none; -moz-box-shadow: none; -ms-box-shadow: none; -o-box-shadow: none;}
 .widget.subscribe p{	margin-bottom: 18px;}
-.widget li a{	color: #ff8d1e;}
-.widget li a:hover{	color: #4b92dc;}
+.widget li a{	color: #ffffff;}  //#ff8d1e
+.widget li a:hover{	color: #ffffff;}
 .widget-title {margin-bottom: 20px;}
-.widget-title span {background: #839FAD none repeat scroll 0 0;display: block; height: 1px;margin-top: 25px;position: relative;width: 20%;}
+.widget-title span {background: #ffffff none repeat scroll 0 0;display: block; height: 1px;margin-top: 25px;position: relative;width: 20%;}
 .widget-title span::after {background: inherit;content: "";height: inherit;    position: absolute;top: -4px;width: 50%;}
 .widget-title.text-center span,.widget-title.text-center span::after {margin-left: auto;margin-right:auto;left: 0;right: 0;}
 .widget .badge{	float: right;	background: #7f7f7f;}

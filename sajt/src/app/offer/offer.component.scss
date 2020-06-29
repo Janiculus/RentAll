@@ -1,3 +1,29 @@
+.navbar {
+
+  background-color: black;
+}
+
+.navbar a:hover {
+
+  background-color: transparent;
+  border-radius: 5px;
+  border: 2px solid #A8D0E6;
+  color: white;
+}
+
+.bg-imgg{
+//background: linear-gradient(to right, #06ff00, #e6ed00); ;
+background-color: #F76C6C;
+}
+
+.navbar a.active {
+  //background: linear-gradient(to right, #06ff00, #e6ed00);
+  background: black;
+  border-radius: 5px;
+  border: 2px solid #A8D0E6;
+}
+
+
 //
 //
 //.page-holder {
@@ -7,9 +33,7 @@
 //.bg-cover {
 //  background-size: cover !important;
 //}
-.navbar a.active {
-  background: linear-gradient(to right, #05a300, #e6ed00);
-}
+
 //* {
 //  box-sizing: border-box;
 //}
@@ -43,8 +67,6 @@
 
 
 * {
-  margin: 0;
-  padding: 0;
   box-sizing: border-box;
 
 }
@@ -62,7 +84,7 @@ section .containerr {
 }
 section .containerr h2 {
   width: 100%;
-  color: #00ff79;
+  color: #069D6B;
   font-size: 36px;
   text-align: center;
   margin-bottom: 10px;
@@ -85,7 +107,7 @@ section .containerr .row100 .inputBox{
   position: relative;
   width: 100%;
   height: 40px;
-  color: #03070d;
+  color: #ADADAD;   //title of boxes color
 }
 section .containerr .row100 .inputBox input,
 section .containerr .row100 .inputBox.textarea textarea{
@@ -99,7 +121,7 @@ section .containerr .row100 .inputBox.textarea textarea{
   font-size: 18px;
   padding: 0 10px;
   z-index: 1;
-  color: #03070d;
+  color: #3D3D3D;       //color of fill
 }
 section .containerr .row100 .inputBox select,
 section .containerr .row100 .inputBox option
@@ -146,7 +168,8 @@ section .containerr .row100 .inputBox .line {
    display: block;
    width: 100%;
    height: 2px;
-   background: linear-gradient(to right, #09ff00, #00b4ed);
+  // background: linear-gradient(to right, #09ff00, #00b4ed);
+   background: #91DEBB;
    transition: 0.5s;
    border-radius: 2px;
    pointer-events: none;
@@ -185,10 +208,14 @@ input[type="submit"] {
   padding: 7px 35px;
   cursor: pointer;
   outline: none;
-  background: greenyellow;
-  color: #000;
+  background: #62D09F;
+  color: #ffffff;
   font-size: 18px;
   border-radius: 2px;
 }
 
+input:hover {
 
+background: #07C586;
+
+}
