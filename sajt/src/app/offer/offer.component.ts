@@ -12,7 +12,7 @@ import { ProductService } from '../services/product.service';
 export class OfferComponent implements OnInit {
 
 product = new Product();
-
+imageInput : string;
 
   OfferForm = this.fb.group({
     name: ['', Validators.required],
@@ -30,9 +30,15 @@ product = new Product();
 
   }
 
-
+  onFileSelected(event) {
+    if(event.target.files.length > 0) 
+     {
+       this.imageInput = event.target.files[0].name;
+     }
+   }
   addProduct(){
     this.product.active = true;
+    this.product.imageUrl = `assets/images/products/${this.imageInput}`
     this.productService.addProduct(this.product)
     .subscribe(data => {})
     history.go(0);

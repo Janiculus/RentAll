@@ -179,6 +179,13 @@
           </div>
         </div>
         </div>
+        <div>
+          <input 
+        type="file" 
+        [(ngModel)]="imageInput"
+        name="imageInput"
+        (change)="onFileSelected($event)">
+        </div>
         <div class="row100">
           <div class="coll">
             <input type="submit" (click)="addProduct()" value="Send">
