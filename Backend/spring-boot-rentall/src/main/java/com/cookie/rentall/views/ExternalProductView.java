@@ -5,11 +5,14 @@ public class ExternalProductView {
         name = "ExampleProduct";
     }
 
-    private String type;
     private String name;
     private String category;
     private String productID;
-    private Double price;
+    private String pojemnoscSilnika;
+    private String markaSilnika;
+    private String szerokoscKoszenia;
+    private String regulacjaWysokosciKoszenia;
+    private String pojemnoscKosza;
 
     public String getName() {
         return name;
@@ -17,14 +20,6 @@ public class ExternalProductView {
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public String getType() {
-        return type;
-    }
-
-    public void setType(String type) {
-        this.type = type;
     }
 
     public String getCategory() {
@@ -35,19 +30,51 @@ public class ExternalProductView {
         this.category = category;
     }
 
-    public Double getPrice() {
-        return price;
-    }
-
-    public void setPrice(Double price) {
-        this.price = price;
-    }
-
     public String getProductID() {
         return productID;
     }
 
     public void setProductID(String productID) {
         this.productID = productID;
+    }
+
+    public String getPojemnoscSilnika() {
+        return pojemnoscSilnika;
+    }
+
+    public void setPojemnoscSilnika(String pojemnoscSilnika) {
+        this.pojemnoscSilnika = pojemnoscSilnika;
+    }
+
+    public String getMarkaSilnika() {
+        return markaSilnika;
+    }
+
+    public void setMarkaSilnika(String markaSilnika) {
+        this.markaSilnika = markaSilnika;
+    }
+
+    public String getSzerokoscKoszenia() {
+        return szerokoscKoszenia;
+    }
+
+    public void setSzerokoscKoszenia(String szerokoscKoszenia) {
+        this.szerokoscKoszenia = szerokoscKoszenia;
+    }
+
+    public String getRegulacjaWysokosciKoszenia() {
+        return regulacjaWysokosciKoszenia;
+    }
+
+    public void setRegulacjaWysokosciKoszenia(String regulacjaWysokosciKoszenia) {
+        this.regulacjaWysokosciKoszenia = regulacjaWysokosciKoszenia;
+    }
+
+    public String getPojemnoscKosza() {
+        return pojemnoscKosza;
+    }
+
+    public void setPojemnoscKosza(String pojemnoscKosza) {
+        this.pojemnoscKosza = pojemnoscKosza;
     }
 }
