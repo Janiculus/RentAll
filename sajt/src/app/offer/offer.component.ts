@@ -47,7 +47,7 @@ imageInput : string;
   fillProduct() {
     this.productService.searchExternalProduct(this.product.name).subscribe(data => {
       const pr = data.filter(p => p.name.includes(this.product.name))[0];
-      this.product.description = `Engine name:${pr.markaSilnika}\nEngine volume:${pr.pojemnoscSilnika}\nCutting width${pr.szerokoscKoszenia}`;
+      this.product.description = `Engine name: ${pr.markaSilnika}\nEngine volume: ${pr.pojemnoscSilnika}\nCutting width: ${pr.szerokoscKoszenia}`;
       this.product.name = pr.name;
     });
   }
