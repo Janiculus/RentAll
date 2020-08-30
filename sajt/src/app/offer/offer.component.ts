@@ -31,7 +31,7 @@ imageInput : string;
   }
 
   onFileSelected(event) {
-    if(event.target.files.length > 0) 
+    if(event.target.files.length > 0)
      {
        this.imageInput = event.target.files[0].name;
      }
@@ -44,11 +44,19 @@ imageInput : string;
     history.go(0);
   }
 
+  fillProduct() {
+    this.productService.searchExternalProduct(this.product.name).subscribe(data => {
+      const pr = data.filter(p => p.name.includes(this.product.name))[0];
+      this.product.description = `Engine name:${pr.markaSilnika}\nEngine volume:${pr.pojemnoscSilnika}\nCutting width${pr.szerokoscKoszenia}`;
+      this.product.name = pr.name;
+    });
+  }
+
   onSubmit() {
     // TODO: Use EventEmitter with form value
     console.warn(this.OfferForm.value);
 
-    
+
 
   }
 

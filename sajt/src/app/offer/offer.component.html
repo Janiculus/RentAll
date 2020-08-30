@@ -178,10 +178,13 @@
             </div>
           </div>
         </div>
+          <div class="coll">
+            <input type="button" (click)="fillProduct()" value="Fill">
+          </div>
         </div>
         <div>
-          <input 
-        type="file" 
+          <input
+        type="file"
         [(ngModel)]="imageInput"
         name="imageInput"
         (change)="onFileSelected($event)">
