@@ -14,6 +14,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { FormsModule } from '@angular/forms'
 import { HttpClientModule } from '@angular/common/http';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import {ComboBoxComponent} from "./offer/combo-box/combo-box.component";
 
 
 const productRoutes: Routes = [
@@ -37,13 +38,14 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    UserComponent,
-    HomePageComponent,
-    OfferComponent,
-    
-  ],
+    declarations: [
+        AppComponent,
+        UserComponent,
+        HomePageComponent,
+        OfferComponent,
+        ComboBoxComponent,
+
+    ],
   imports: [
     BrowserModule,
     RouterModule.forRoot(routes),
