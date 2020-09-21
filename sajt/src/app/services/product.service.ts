@@ -1,15 +1,17 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Product } from '../common/product';
+//import { ExternalProduct } from '../common/ExternalProduct';
 import { Observable } from 'rxjs';
 import  { map } from 'rxjs/operators';
 import { ProductCategory } from '../common/product-category';
+import {ExternalProduct} from "../common/ExternalProduct";
 
 @Injectable({
   providedIn: 'root'
 })
 export class ProductService {
-  
+
 
 
   private baseUrl = 'http://localhost:8080/api/products';
@@ -26,7 +28,7 @@ export class ProductService {
     return this.httpClient.get<Product>(productUrl);
   }
 
-  getProductListPaginate(thePage: number, 
+  getProductListPaginate(thePage: number,
                         thePageSize: number,
                         theCategoryId: number): Observable<GetResponseProducts> {
 
@@ -47,6 +49,12 @@ export class ProductService {
 
   private getProducts(searchUrl: string): Observable<Product[]> {
     return this.httpClient.get<GetResponseProducts>(searchUrl).pipe(map(response => response._embedded.products));
+  }
+
+  searchExternalProduct(productNameFilter: string) {
+    return this.httpClient.get<ExternalProduct[]>(`http://localhost:8080/api/externalProduct`).pipe(map(response => {
+      return response;
+    }));
   }
 
   getProductCategories(): Observable<ProductCategory[]> {
@@ -103,4 +111,8 @@ interface GetResponseProductCategory {
   _embedded: {
     productCategory: ProductCategory[];
   }
+}
+
+interface GetResponseExternalProducts {
+    products: ExternalProduct[];
 }
