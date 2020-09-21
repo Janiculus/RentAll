@@ -37,23 +37,25 @@ public class ExternalProductServiceImpl implements ExternalProductService {
     @Override
     public List<ExternalProductView> getExternalProductList() {
         List<ExternalProductView> resultList = new ArrayList<>();
-        final String uri = PRODUCT_URL;
-        RestTemplate restTemplate = createRestTemplate();
-        HttpEntity<String> entity = createStringHttpEntity();
-        ObjectMapper mapper = getObjectMapper();
-        String result = restTemplate.exchange(uri, HttpMethod.GET, entity, String.class).toString();
-        Pattern pattern = Pattern.compile(PRODUCT_REGEX, Pattern.MULTILINE | Pattern.UNIX_LINES);
-        Matcher matcher = pattern.matcher(result);
-        StringBuilder sb = new StringBuilder("{");
-        while (matcher.find()) {
-            sb.append(matcher.group());
-            sb.append("\"\"} },");
-            String pr = sb.toString().replace("@type", "type");
-            try {
-                resultList.add(getExternalProduct(mapper.readValue(pr, ExternalProductListItem.class)));
-                sb = new StringBuilder("{");
-            } catch (JsonProcessingException e) {
-                e.printStackTrace();
+        for(int i = 0; i < 5; i++) { //todo учитывать количество страниц
+            final String uri = PRODUCT_URL + "?page=" + i;
+            RestTemplate restTemplate = createRestTemplate();
+            HttpEntity<String> entity = createStringHttpEntity();
+            ObjectMapper mapper = getObjectMapper();
+            String result = restTemplate.exchange(uri, HttpMethod.GET, entity, String.class).toString();
+            Pattern pattern = Pattern.compile(PRODUCT_REGEX, Pattern.MULTILINE | Pattern.UNIX_LINES);
+            Matcher matcher = pattern.matcher(result);
+            StringBuilder sb = new StringBuilder("{");
+            while (matcher.find()) {
+                sb.append(matcher.group());
+                sb.append("\"\"} },");
+                String pr = sb.toString().replace("@type", "type");
+                try {
+                    resultList.add(getExternalProduct(mapper.readValue(pr, ExternalProductListItem.class)));
+                    sb = new StringBuilder("{");
+                } catch (JsonProcessingException e) {
+                    e.printStackTrace();
+                }
             }
         }
         return resultList;
