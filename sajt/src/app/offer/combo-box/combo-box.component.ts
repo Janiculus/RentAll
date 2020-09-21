@@ -23,7 +23,7 @@ export class ComboBoxComponent implements OnInit {
   getFilteredList() {
     this.listHidden = false;
     if (!this.listHidden && this.inputItem !== undefined) {
-      this.filteredList = this.list.filter((item) =>  item.toLowerCase().startsWith(this.inputItem.toLowerCase()));
+      this.filteredList = this.list.filter((item) =>  item.toLowerCase().includes(this.inputItem.toLowerCase()));
     }
   }
   // select highlighted item when enter is pressed or any item that is clicked
