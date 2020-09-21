@@ -13,6 +13,7 @@ public class ExternalProductView {
     private String szerokoscKoszenia;
     private String regulacjaWysokosciKoszenia;
     private String pojemnoscKosza;
+    private String photoLink;
 
     public String getName() {
         return name;
@@ -76,5 +77,13 @@ public class ExternalProductView {
 
     public void setPojemnoscKosza(String pojemnoscKosza) {
         this.pojemnoscKosza = pojemnoscKosza;
+    }
+
+    public String getPhotoLink() {
+        return photoLink;
+    }
+
+    public void setPhotoLink(String photoLink) {
+        this.photoLink = photoLink;
     }
 }

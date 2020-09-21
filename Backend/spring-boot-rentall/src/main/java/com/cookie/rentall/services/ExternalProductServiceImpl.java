@@ -31,6 +31,8 @@ public class ExternalProductServiceImpl implements ExternalProductService {
     private static final String REGULACJA_WYSOKOSCI_KOSZENIA = "Regulacja wysokości koszenia";
     private static final String POJEMNOSC_KOSZA = "Pojemność kosza \\[l\\]";
     private static final String PRODUCT_NAME = "\"og:title\" content=\"";
+    private static final String PRODUCT_PHOTO = "data-zone=\"OFFERBOX_PHOTO\" data-offer-id=(([\\s\\S](?!/div>))*)>";
+    private static final String PRODUCT_PHOTO_INTERNAL = "src=\"(([\\s\\S](?!\"></div>))*)\"";
 
     @Override
     public List<ExternalProductView> getExternalProductList() {
@@ -65,11 +67,15 @@ public class ExternalProductServiceImpl implements ExternalProductService {
             HttpEntity<String> entity = createStringHttpEntity();
             String rawProduct = restTemplate.exchange(item.getUrl(), HttpMethod.GET, entity, String.class).toString();
             result.setPojemnoscSilnika(parseFieldValue(rawProduct, POJEMNOSC_SILNIKA_START, "</td>", false));
-            result.setMarkaSilnika(parseFieldValue(rawProduct, SILNIK_MARKA,"</td>", false));
+            result.setMarkaSilnika(parseFieldValue(rawProduct, SILNIK_MARKA, "</td>", false));
             result.setSzerokoscKoszenia(parseFieldValue(rawProduct, SZEROKODC_KOSZENIA, "</td>", false));
             result.setRegulacjaWysokosciKoszenia(parseFieldValue(rawProduct, REGULACJA_WYSOKOSCI_KOSZENIA, "</td>", false));
-            result.setPojemnoscKosza(parseFieldValue(rawProduct, POJEMNOSC_KOSZA,"</td>", false));
-            result.setName(parseFieldValue(rawProduct, PRODUCT_NAME,"\"><meta property=\"og:site_name\"", true));
+            result.setPojemnoscKosza(parseFieldValue(rawProduct, POJEMNOSC_KOSZA, "</td>", false));
+            if (result.getPojemnoscKosza() == null) result.setPojemnoscKosza("-");
+            result.setName(parseFieldValue(rawProduct, PRODUCT_NAME, "\"><meta property=\"og:site_name\"", true));
+            String photo = parseFieldValue(rawProduct, PRODUCT_PHOTO, PRODUCT_PHOTO_INTERNAL);
+            if (photo != null && photo.length() > 5)
+                result.setPhotoLink(photo.substring(5, photo.length() - 1));
         }
         return result;
     }
@@ -83,13 +89,26 @@ public class ExternalProductServiceImpl implements ExternalProductService {
         return null;
     }
 
+    private String parseFieldValue(String rawProduct, String regex, String regex2) {
+        Pattern pattern = Pattern.compile(regex);
+        Matcher matcher = pattern.matcher(rawProduct);
+        if (matcher.find()) {
+            Pattern pattern1 = Pattern.compile(regex2);
+            Matcher matcher1 = pattern1.matcher(matcher.group());
+            if (matcher1.find()) {
+                return matcher1.group();
+            }
+        }
+        return null;
+    }
+
     private String getFieldRegex(String start, String end, boolean isProductName) {
         return start + (isProductName ? "" : "</em></div></td><td class=\"is-value\">") + "(([\\s\\S](?!/tr))*)" + end;
     }
 
     private String getFieldValue(String start, String fieldString, String end, boolean isProductName) {
         int startIndex = (start + (isProductName ? "" : "</em></div></td><td class=\"is-value\">")).length();
-        int endIndex = fieldString.length() - (end.length()  + 1);
+        int endIndex = fieldString.length() - (end.length() + 1);
         return fieldString.substring(startIndex, endIndex).trim();
     }
 
