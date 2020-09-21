@@ -163,10 +163,11 @@
         <div class="row100">
           <div class="coll">
             <div class="inputBox textarea">
+              <img style="z-index: 0" src="{{productImage}}">
               <textarea class="form-control" required="required" [(ngModel)]="product.description"
                         name="description"></textarea>
               <span class="text">Description:</span>
-              <span class="line"></span>
+
               <div class="invalid-tooltip">
                 Please provide a valid zip.
               </div>

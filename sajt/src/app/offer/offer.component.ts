@@ -17,6 +17,7 @@ export class OfferComponent implements OnInit {
   cItems: string[];
   externalProducts: ExternalProduct[];
   imageInput: string;
+  productImage: string;
 
   OfferForm = this.fb.group({
     name: ['', Validators.required],
@@ -53,7 +54,7 @@ export class OfferComponent implements OnInit {
   fillProduct() {
     this.productService.searchExternalProduct(this.product.name).subscribe(data => {
       const pr = data.filter(p => p.name.includes(this.product.name))[0];
-      this.product.description = `Engine name: ${pr.markaSilnika}\nEngine volume: ${pr.pojemnoscSilnika}\nCutting width: ${pr.szerokoscKoszenia}`;
+      this.product.description = `Engine name: ${pr.markaSilnika}\nEngine volume: ${pr.pojemnoscSilnika}\nCutting width: ${pr.szerokoscKoszenia}\nHeight regulation: ${pr.regulacjaWysokosciKoszenia}\nBasket capacity: ${pr.pojemnoscKosza}`;
       this.product.name = pr.name;
     });
   }
@@ -67,8 +68,9 @@ export class OfferComponent implements OnInit {
 
   selectFromExternal(filter: string) {
     const pr = this.externalProducts.filter(i => i.name === filter)[0];
+    this.productImage = `https://mediaexpert.pl${pr.photoLink}`;
     if (pr != null) {
-      this.product.description = `Engine name: ${pr.markaSilnika}\nEngine volume: ${pr.pojemnoscSilnika}\nCutting width: ${pr.szerokoscKoszenia}`;
+      this.product.description = `Engine name: ${pr.markaSilnika}\nEngine volume: ${pr.pojemnoscSilnika}\nCutting width: ${pr.szerokoscKoszenia}\nHeight regulation: ${pr.regulacjaWysokosciKoszenia}\nBasket capacity: ${pr.pojemnoscKosza}`;
     }
   }
 

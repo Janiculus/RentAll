@@ -7,4 +7,5 @@ export class ExternalProduct {
   szerokoscKoszenia: string;
   regulacjaWysokosciKoszenia: number;
   pojemnoscKosza: string;
+  photoLink: string;
 }
