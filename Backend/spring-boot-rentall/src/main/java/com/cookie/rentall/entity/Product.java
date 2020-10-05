@@ -9,6 +9,7 @@ import org.hibernate.annotations.UpdateTimestamp;
 import javax.persistence.*;
 import java.math.BigDecimal;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @Table(name="product")
@@ -24,6 +25,8 @@ public class Product {
     @JoinColumn(name = "category_id", nullable = false)
     private ProductCategory category;
 
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "booking")
+    private List<Booking> booking;
 
     @Column(name = "name")
     private String name;

@@ -44,7 +44,6 @@ export class OfferComponent implements OnInit {
 
   addProduct() {
     this.product.active = true;
-    this.product.imageUrl = `assets/images/products/${this.imageInput}`
     this.productService.addProduct(this.product)
       .subscribe(data => {
       })
@@ -73,6 +72,7 @@ export class OfferComponent implements OnInit {
     if (pr != null) {
       this.product.description = `Engine name: ${pr.markaSilnika}\nEngine volume: ${pr.pojemnoscSilnika}\nCutting width: ${pr.szerokoscKoszenia}\nHeight regulation: ${pr.regulacjaWysokosciKoszenia}\nBasket capacity: ${pr.pojemnoscKosza}`;
     }
+    this.product.imageUrl = this.productImage;
   }
 
   onSubmit() {
