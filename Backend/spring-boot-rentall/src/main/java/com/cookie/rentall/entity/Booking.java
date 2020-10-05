@@ -1,6 +1,7 @@
 package com.cookie.rentall.entity;
 
 import lombok.Data;
+import org.hibernate.annotations.CreationTimestamp;
 
 import javax.persistence.*;
 import java.util.Date;
@@ -22,6 +23,7 @@ public class Booking {
     @Column(name = "pin_code")
     private int pinCode;
     @Column(name = "create_date")
+    @CreationTimestamp
     private Date createDate;
     @Column(name= "booking_date")
     private Date bookingDate;
