@@ -27,11 +27,11 @@
 
 
 /* Style the navigation menu */
-.navbar {
-  width: 100%;
-  background-color: #555;
-  overflow: auto;
-}
+//.navbar {
+//  width: 100%;
+//  background-color: #555;
+//  overflow: auto;
+//}
 
 /* Navigation links */
 .navbar a {
@@ -45,14 +45,14 @@
 }
 
 /* Add a background color on mouse-over */
-.navbar a:hover {
-  background-color: #000;
-}
+//.navbar a:hover {
+//  background-color: #000;
+//}
 
 /* Style the current/active link */
-.navbar a.active {
-  background: linear-gradient(to right, #ff000b,#ffad06 );
-}
+//.navbar a.active {
+//  background: linear-gradient(to right, #ff000b,#ffad06 );
+//}
 
 /* Add responsiveness - on screens less than 500px, make the navigation links appear on top of each other, instead of next to each other */
 @media screen and (max-device-width: 500px) {
