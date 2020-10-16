@@ -1,11 +1,11 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Product } from '../common/product';
-//import { ExternalProduct } from '../common/ExternalProduct';
+// import { ExternalProduct } from '../common/ExternalProduct';
 import { Observable } from 'rxjs';
 import  { map } from 'rxjs/operators';
 import { ProductCategory } from '../common/product-category';
-import {ExternalProduct} from "../common/ExternalProduct";
+import {ExternalProduct} from '../common/ExternalProduct';
 
 @Injectable({
   providedIn: 'root'
@@ -29,8 +29,8 @@ export class ProductService {
   }
 
   getProductListPaginate(thePage: number,
-                        thePageSize: number,
-                        theCategoryId: number): Observable<GetResponseProducts> {
+                         thePageSize: number,
+                         theCategoryId: number): Observable<GetResponseProducts> {
 
 
                           // need to build URL based on category id, page and size
@@ -72,22 +72,56 @@ export class ProductService {
     return this.getProducts(searchUrl);
 
   }
-
-  takeProduct(theProudtctId: number): Observable<any> {
-    const takeUrl = `${this.baseUrl}/${theProudtctId}`;
-    const headers = {'content-type' : 'application/json'}
-    const body = {'active' : 'false'}
-    return this.httpClient.patch(takeUrl, body, {'headers': headers});
+// RESERVE PRODUCT
+  reserveProduct(theProductId: number): Observable<any> {
+    const reserveUrl = `${this.baseUrl}/${theProductId}`;
+    const headers = {'content-type' : 'application/json'};
+    const body = {active : 'false'};
+    return this.httpClient.patch(reserveUrl, body, {headers: headers});
+  }
+// RETURN PRODUCT
+  returnProduct(theProductId: number): Observable<any> {
+    const returnUrl = `${this.baseUrl}/${theProductId}`;
+    const headers = {'content-type' : 'application/json'};
+    const body = {active : 'true'};
+    return this.httpClient.patch(returnUrl, body, {headers: headers});
   }
 
-  addProduct(product : Product): Observable<any> {
-    const headers = {'content-type': 'application/json'}
+  listProductsByOwner(userId: number, status: boolean): Observable<Product[]> {
+
+    const searchUrl = `${this.baseUrl}/createdByUser/findByUserId?id=${userId}`;
+
+    return this.getProducts(searchUrl);
+  }
+
+  listProductsByConsumer(userId: number, status: boolean): Observable<Product[]> {
+
+    const searchUrl = `${this.baseUrl}/gotByUser/findByUserId?id=${userId}`;
+
+    return this.getProducts(searchUrl);
+  }
+
+  addProduct(product: Product): Observable<any> {
+    const headers = {'content-type': 'application/json'};
     const body = JSON.stringify(product);
     console.log(body);
-    return this.httpClient.post(this.baseUrl, body, {'headers': headers});
+    return this.httpClient.post(this.baseUrl, body, {headers: headers});
   }
 
-  searchCityProducts(cityName: string) : Observable<Product[]>{
+  deleteProduct(theProductId: number): Observable<Product> {
+
+    const productUrl = `${this.baseUrl}/${theProductId}`;
+    return this.httpClient.delete<Product>(productUrl);
+  }
+
+  updateProduct(product: Product): Observable<any> {
+    const headers = {'content-type': 'application/json'};
+    const body = JSON.stringify(product);
+    console.log(body);
+    return this.httpClient.put(this.baseUrl, body, {headers: headers});
+  }
+
+  searchCityProducts(cityName: string): Observable<Product[]> {
     const searchUrl = `${this.baseUrl}/search/findByCityContaining/?city=${cityName}`;
 
     return this.getProducts(searchUrl);
@@ -98,19 +132,19 @@ export class ProductService {
 interface GetResponseProducts {
   _embedded: {
     products: Product[];
-  },
-  page : {
+  };
+  page: {
     size: number,
     totalElements: number,
     totalPages: number,
     number: number
-  }
+  };
 }
 
 interface GetResponseProductCategory {
   _embedded: {
     productCategory: ProductCategory[];
-  }
+  };
 }
 
 interface GetResponseExternalProducts {
