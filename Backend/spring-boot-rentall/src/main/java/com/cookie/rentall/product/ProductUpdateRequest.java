@@ -1,7 +1,7 @@
 package com.cookie.rentall.product;
 
 import com.cookie.rentall.entity.Booking;
-import com.cookie.rentall.entity.ProductCategory;
+import com.cookie.rentall.entity.Product;
 
 import java.math.BigDecimal;
 import java.util.Date;
@@ -9,30 +9,46 @@ import java.util.List;
 
 public class ProductUpdateRequest {
 
-    private Long id;
+    public Long id;
 
-    private ProductCategory category;
+    public String category;
 
-    private List<Booking> booking;
+    public List<Booking> booking;
 
-    private String name;
+    public String name;
 
-    private String firstName;
+    public String firstName;
 
-    private String phone_number;
+    public String phoneNumber;
 
-    private String description;
+    public String description;
 
-    private BigDecimal unitPrice;
+    public BigDecimal unitPrice;
 
-    private String imageUrl;
+    public String imageUrl;
 
-    private boolean active;
+    public boolean active;
 
-    private Date dateCreated;
+    public Date dateCreated;
 
-    private Date lastUpdated;
+    public Date lastUpdated;
 
-    private String city;
+    public String city;
 
+    public ProductUpdateRequest() {}
+
+    public ProductUpdateRequest(Product product) {
+        this.active = product.isActive();
+        this.category = product.getCategory().getCategoryName();
+        this.city = product.getCity();
+        this.dateCreated = product.getDateCreated();
+        this.description = product.getDescription();
+        this.id = product.getId();
+        this.firstName = product.getFirstName();
+        this.imageUrl = product.getImageUrl();
+        this.name = product.getName();
+        this.lastUpdated = product.getLastUpdated();
+        this.phoneNumber = product.getPhoneNumber();
+        this.unitPrice = product.getUnitPrice();
+    }
 }
