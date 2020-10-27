@@ -131,7 +131,30 @@ public class ProductController {
         return Page.empty();
     }
 
-
+    @PreAuthorize("isAuthenticated()")
+    @PostMapping("api/products")
+    public ProductUpdateRequest createProduct(@RequestBody ProductUpdateRequest request) {
+        Product product = new Product();
+        product.setActive(true);
+        product.setCity(request.city);
+        product.setDateCreated(new Date());
+        product.setFirstName(request.firstName);
+        product.setName(request.name);
+        product.setDescription(request.description);
+        product.setImageUrl(request.imageUrl);
+        product.setPhoneNumber(request.phoneNumber);
+        product.setUnitPrice(request.unitPrice);
+        product.setUserId(getUserId());
+        if (request.category != null) {
+            ProductCategory productCategory = productCategoryRepository.findProductCategoryByCategoryName(request.category);
+            if (productCategory != null) {
+                product.setCategory(productCategory);
+            }
+        }
+        productRepository.save(product);
+        request.id = product.getId();
+        return request;
+    }
 
     private Long getUserId() {
         try {
