@@ -4,6 +4,7 @@ import lombok.Data;
 import org.hibernate.annotations.CreationTimestamp;
 
 import javax.persistence.*;
+import java.math.BigDecimal;
 import java.util.Date;
 
 @Entity
@@ -38,6 +39,18 @@ public class Booking {
 
     @Column(name = "actual")
     private Boolean actual;
+
+    @Column(name = "client_return_date")
+    private Date clientReturnDate;
+
+    @Column(name="expected_start")
+    private Date expectedStart;
+
+    @Column(name="expected_end")
+    private Date expectedEnd;
+
+    @Column(name = "cost")
+    private BigDecimal cost;
 
     public long getId() {
         return id;
@@ -97,5 +110,37 @@ public class Booking {
 
     public void setActual(Boolean actual) {
         this.actual = actual;
+    }
+
+    public Date getClientReturnDate() {
+        return clientReturnDate;
+    }
+
+    public void setClientReturnDate(Date clientReturnDate) {
+        this.clientReturnDate = clientReturnDate;
+    }
+
+    public Date getExpectedStart() {
+        return expectedStart;
+    }
+
+    public void setExpectedStart(Date expectedStart) {
+        this.expectedStart = expectedStart;
+    }
+
+    public Date getExpectedEnd() {
+        return expectedEnd;
+    }
+
+    public void setExpectedEnd(Date expectedEnd) {
+        this.expectedEnd = expectedEnd;
+    }
+
+    public BigDecimal getCost() {
+        return cost;
+    }
+
+    public void setCost(BigDecimal cost) {
+        this.cost = cost;
     }
 }
