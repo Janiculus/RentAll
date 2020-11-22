@@ -1,5 +1,4 @@
 package com.cookie.rentall.controllers;
-
 import com.cookie.rentall.auth.User;
 import com.cookie.rentall.auth.UserDetailsImpl;
 import com.cookie.rentall.auth.UserRepository;
@@ -24,7 +23,6 @@ import org.springframework.mail.javamail.JavaMailSenderImpl;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
-
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
@@ -44,7 +42,6 @@ public class ProductController {
     private UserRepository userRepository;
     @Autowired
     private JavaMailSender emailSender;
-
     private void sendSimpleMessage(
             String to, String subject, String text) {
         SimpleMailMessage message = new SimpleMailMessage();
@@ -54,30 +51,24 @@ public class ProductController {
         message.setText(text);
         emailSender.send(message);
     }
-
     @Bean
     public JavaMailSender getJavaMailSender() {
         JavaMailSenderImpl mailSender = new JavaMailSenderImpl();
         mailSender.setHost("smtp.gmail.com");
         mailSender.setPort(587);
-
         mailSender.setUsername("user@gmail.com");//todo
         mailSender.setPassword("123");//todo
-
         Properties props = mailSender.getJavaMailProperties();
         props.put("mail.transport.protocol", "smtp");
         props.put("mail.smtp.auth", "true");
         props.put("mail.smtp.starttls.enable", "true");
         props.put("mail.debug", "true");
-
         return mailSender;
     }
-
     @GetMapping("api/products/currentUser")
     public Long getCurrentUser() {
         return getUserId();
     }
-
     @GetMapping("api/products/view/{id}")
     public ProductUpdateRequest getProduct(@PathVariable("id") Long id) {
         return new ProductUpdateRequest(productRepository.getOne(id));
@@ -86,7 +77,7 @@ public class ProductController {
     @GetMapping("api/products/{id}/unavailable")
     public List<ProductUnavailableView> getUnavailable(@PathVariable("id") Long id) {
         Date now = new Date();
-        return productRepository.getOne(id).getBookings().stream().filter(b -> b.getExpectedEnd() != null && b.getExpectedEnd().after(now))
+        return productRepository.getOne(id).getBookings().stream().filter(b -> b.getExpectedEnd().after(now))
                 .map(b -> new ProductUnavailableView(b.getExpectedStart(), b.getExpectedEnd())).collect(Collectors.toList());
     }
 
@@ -101,7 +92,6 @@ public class ProductController {
             return new ProductStatusView("RETURNED_BY_CONSUMER");
         return new ProductStatusView("FREE");
     }
-
     @GetMapping("api/products/{id}/consumer")
     public Long getProductConsumer(@PathVariable("id") Long id) {
         Product p = productRepository.getOne(id);
@@ -110,13 +100,10 @@ public class ProductController {
             return booking.get().getUserId();
         return 0L;
     }
-
     @GetMapping("api/products/available")
     public Page<ProductShortView> available() {
         return productRepository.findAll(Pageable.unpaged()).map(ProductShortView::new);
     }
-
-
     @GetMapping("api/products/createdByUser")
     public Page<ProductShortView> createdByUser(@RequestParam(name = "status") String status) {
         switch (status.toUpperCase()) {
@@ -129,7 +116,6 @@ public class ProductController {
         }
         return Page.empty();
     }
-
     @GetMapping("api/products/gotByUser")
     public Page<ProductShortView> gotByUser(@RequestParam(name = "status") String status) {
         switch (status.toUpperCase()) {
@@ -142,7 +128,6 @@ public class ProductController {
         }
         return Page.empty();
     }
-
     @PreAuthorize("isAuthenticated()")
     @PostMapping("api/products")
     public ProductUpdateRequest createProduct(@RequestBody ProductUpdateRequest request) {
@@ -167,7 +152,6 @@ public class ProductController {
         request.id = product.getId();
         return request;
     }
-
     @PreAuthorize("isAuthenticated()")
     @PatchMapping("api/products/{id}/book")
     public Boolean book(@PathVariable("id") Long id, @RequestBody ProductReserveRequest request) {
@@ -189,12 +173,10 @@ public class ProductController {
         bookingRepository.save(newBooking);
         return true;
     }
-
     private boolean isInInterval(Date date, Date begin, Date end) {
         if (begin == null || end == null) return false;
         return (date.after(begin) || date.equals(begin)) && (date.before(end) || date.equals(end));
     }
-
     @PreAuthorize("isAuthenticated()")
     @PatchMapping("api/products/{id}/get")
     public Boolean giveProductToCustomer(@PathVariable("id") Long id) {
@@ -210,7 +192,6 @@ public class ProductController {
         //sendSimpleMessage(userRepository.findById(actualBooking.get().getUserId()).map(User::getEmail).orElse(""), "Your booking accepted", product.getName() + " is successfully booked");
         return true;
     }
-
     @PreAuthorize("isAuthenticated()")
     @PatchMapping("api/products/{id}/return")
     public Boolean returnProduct(@PathVariable("id") Long id) {
@@ -225,7 +206,6 @@ public class ProductController {
         bookingRepository.save(actualBooking.get());
         return true;
     }
-
     @PreAuthorize("isAuthenticated()")
     @PatchMapping("api/products/{id}/returnConsumer")
     public Boolean returnProductByConsumer(@PathVariable("id") Long id) {
@@ -239,7 +219,6 @@ public class ProductController {
         bookingRepository.save(actualBooking.get());
         return true;
     }
-
     @PreAuthorize("isAuthenticated()")
     @PatchMapping("api/products/{id}/cancel")
     public Boolean cancelReservation(@PathVariable("id") Long id) {
@@ -256,7 +235,6 @@ public class ProductController {
         bookingRepository.delete(actualBooking.get());
         return true;
     }
-
     private Long getUserId() {
         try {
             return ((UserDetailsImpl) SecurityContextHolder.getContext().getAuthentication().getPrincipal()).getId();
@@ -264,4 +242,19 @@ public class ProductController {
             return null;
         }
     }
+}
+ 13  ...nd/spring-boot-rentall/src/main/java/com/cookie/rentall/views/ProductUnavailableView.java 
+@@ -0,0 +1,13 @@
+package com.cookie.rentall.views;
+
+import java.util.Date;
+
+public class ProductUnavailableView {
+    public ProductUnavailableView(Date start, Date end) {
+        this.start = start;
+        this.end = end;
+    }
+
+    public Date start;
+    public Date end;
 }
