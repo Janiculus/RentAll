@@ -9,6 +9,27 @@
         style="color: white; float: left; vertical-align: center; margin-right: -200px">{{ appComponent.username }}</span>
   <a href=# routerLink="/" (click)="appComponent.logout()" *ngIf="appComponent.isLoggedIn">LogOut</a>
 </div>
-<div *ngIf="products.length > 0">
-  <app-pr-list [(products)]="products"></app-pr-list>
-</div>
+
+<ul class="nav nav-pills">
+  <li class="nav-item">
+    <a class="nav-link"
+       [routerLinkActive]="['active']"
+       [routerLink]="['./reserved']">Reserved
+    </a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link"
+       [routerLinkActive]="['active']"
+       [routerLink]="['./booked']">Booked
+    </a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link"
+       [routerLinkActive]="['active']"
+       [routerLink]="['./free']">Free
+    </a>
+  </li>
+</ul>
+
+<router-outlet></router-outlet>
+

@@ -3,8 +3,7 @@ import {Product} from 'src/app/common/product';
 import {ProductService} from 'src/app/services/product.service';
 import {ActivatedRoute, Router} from '@angular/router';
 import {AppComponent} from "../../../app.component";
-import {NgbDate, NgbDatepicker, NgbDateStruct} from "@ng-bootstrap/ng-bootstrap";
-import { faCalendarAlt } from '@fortawesome/free-solid-svg-icons';
+
 
 @Component({
   selector: 'app-product-details',
@@ -18,28 +17,17 @@ export class ProductDetailsComponent implements OnInit {
   productStatus = 'FREE';
   productConsumer = 0;
   appComponent: AppComponent;
-  from: NgbDateStruct;
-  to: NgbDateStruct;
-  faCalendar = faCalendarAlt;
-  markDisabled: (date: NgbDate) => {};
+
 
   constructor(private productService: ProductService,
               private route: ActivatedRoute, private router: Router) {
   }
+
   ngOnInit(): void {
     this.appComponent = this.productService.getAppComponent();
     this.route.paramMap.subscribe(() => {
       this.handleProductDetails();
     });
-    this.disableDays()
-  }
-
-  disableDays() {
-    this.markDisabled = (date: NgbDate) => true;
-  }
-
-
-
 
   handleProductDetails() {
 
@@ -57,6 +45,7 @@ export class ProductDetailsComponent implements OnInit {
       data => { this.productConsumer = data; }
     );
   }
+
   reserveProduct(id: string) {
     this.productService.reserveProduct(id).subscribe(
       result => {
@@ -66,55 +55,6 @@ export class ProductDetailsComponent implements OnInit {
         } else {
           alert('Product reservation failed');
         }
-      }
-    );
-  }
-  cancelProductReservation(id: string) {
-    this.productService.cancelReservation(id).subscribe(
-      result => {
-        if (result === true) {
-          alert('Product reservation cancelled');
-          window.location.reload();
-        } else {
-          alert('Could not cancel product reservation');
-        }
-      }
-    );
-  }
-  bookProduct(id: string) {
-    this.productService.bookProduct(id).subscribe(
-      result => {
-        if (result === true) {
-          alert('Product booked');
-          window.location.reload();
-        } else {
-          alert('Product booking failed');
-        }
-      }
-    );
-  }
-  returnProductConsumer(id: string) {
-    this.productService.returnProductConsumer(id).subscribe(
-      result => {
-        if (result === true) {
-          alert('Product returned');
-          window.location.reload();
-        } else {
-          alert('Product return failed');
-        }
-      }
-    );
-  }
-  returnProduct(id: string) {
-    this.productService.returnProduct(id).subscribe(
-      result => {
-        if (result === true) {
-          alert('Product return confirmed');
-          window.location.reload();
-        } else {
-          alert('Product return failed');
-        }
-      }
-    );
+
   }
 }

@@ -1,5 +1,6 @@
 import {BrowserModule} from '@angular/platform-browser';
 import {NgModule} from '@angular/core';
+
 import {AppComponent} from './app.component';
 import {UserComponent} from './user/user.component';
 import {HomePageComponent} from './home-page/home-page.component';
@@ -27,8 +28,6 @@ import { FreeComponent } from './owner-products/free/free.component';
 import { ConsumerReservedComponent } from './consumer-products/consumer-reserved/consumer-reserved.component';
 import { ConsumerBookedComponent } from './consumer-products/consumer-booked/consumer-booked.component';
 import { ConsumerFreeComponent } from './consumer-products/consumer-free/consumer-free.component';
-import { MaterialModule } from './material.module';
-import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 const productRoutes: Routes = [
   // {path: 'citySearch/:keyword/products/:id', component: ProductDetailsComponent},
@@ -42,18 +41,21 @@ const productRoutes: Routes = [
   {path: '', component: ProductListComponent},
   {path: '**', redirectTo: '/category', pathMatch: 'full'}
 ];
+
 const ownerProductRoutes: Routes = [
   { path: '', redirectTo: 'booked', pathMatch: 'full' },
   {path: 'reserved', component: ReservedComponent},
   {path: 'booked', component: BookedComponent},
   {path: 'free', component: FreeComponent}
 ];
+
 const consumerProductRoutes: Routes = [
   { path: '', redirectTo: 'booked', pathMatch: 'full' },
   {path: 'reserved', component: ConsumerReservedComponent},
   {path: 'booked', component: ConsumerBookedComponent},
   {path: 'free', component: ConsumerFreeComponent}
 ];
+
 const routes: Routes = [
   {path: '', component: HomePageComponent},
   {path: 'user', component: UserComponent},
