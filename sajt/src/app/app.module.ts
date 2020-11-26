@@ -64,7 +64,6 @@ const routes: Routes = [
   {path: 'owner', component: OwnerProductsComponent, children: ownerProductRoutes},
   {path: 'consumer', component: ConsumerProductsComponent, children: consumerProductRoutes}
 ];
-
 @NgModule({
   declarations: [
     AppComponent,
@@ -92,7 +91,10 @@ const routes: Routes = [
     HttpClientModule,
     ReactiveFormsModule,
     NgbModule,
-    FormsModule
+    FormsModule,
+    MaterialModule
+    MaterialModule,
+    FontAwesomeModule
   ],
   providers: [authInterceptorProviders],
   bootstrap: [AppComponent]

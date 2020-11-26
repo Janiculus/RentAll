@@ -4,17 +4,20 @@ import {ProductService} from 'src/app/services/product.service';
 import {ActivatedRoute, Router} from '@angular/router';
 import {AppComponent} from "../../../app.component";
 
+
 @Component({
   selector: 'app-product-details',
   templateUrl: './product-details.component.html',
   styleUrls: ['./product-details.component.scss']
 })
+
 export class ProductDetailsComponent implements OnInit {
 
   product: Product = new Product();
   productStatus = 'FREE';
   productConsumer = 0;
   appComponent: AppComponent;
+
 
   constructor(private productService: ProductService,
               private route: ActivatedRoute, private router: Router) {
@@ -25,13 +28,11 @@ export class ProductDetailsComponent implements OnInit {
     this.route.paramMap.subscribe(() => {
       this.handleProductDetails();
     });
-  }
 
   handleProductDetails() {
 
     // get the "id" param string. Convert string to a number using the + symbol
     const theProductId: number = +this.route.snapshot.paramMap.get('id');
-
     this.productService.getProduct(theProductId).subscribe(
       data => {
         this.product = data;
@@ -54,47 +55,6 @@ export class ProductDetailsComponent implements OnInit {
         } else {
           alert('Product reservation failed');
         }
-      }
-    );
-  }
 
-  cancelProductReservation(id: string) {
-    this.productService.cancelReservation(id).subscribe(
-      result => {
-        if (result === true) {
-          alert('Product reservation cancelled');
-          window.location.reload();
-        } else {
-          alert('Could not cancel product reservation');
-        }
-      }
-    );
   }
-
-  bookProduct(id: string) {
-    this.productService.bookProduct(id).subscribe(
-      result => {
-        if (result === true) {
-          alert('Product booked');
-          window.location.reload();
-        } else {
-          alert('Product booking failed');
-        }
-      }
-    );
-  }
-
-  returnProduct(id: string) {
-    this.productService.returnProduct(id).subscribe(
-      result => {
-        if (result === true) {
-          alert('Product returned');
-          window.location.reload();
-        } else {
-          alert('Product return failed');
-        }
-      }
-    );
-  }
-
 }
