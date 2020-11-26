@@ -8,25 +8,35 @@ import com.cookie.rentall.dao.ProductRepository;
 import com.cookie.rentall.entity.Booking;
 import com.cookie.rentall.entity.Product;
 import com.cookie.rentall.entity.ProductCategory;
+import com.cookie.rentall.message.ResponseMessage;
+import com.cookie.rentall.model.FileInfo;
 import com.cookie.rentall.product.ProductUpdateRequest;
 import com.cookie.rentall.repositores.BookingRepository;
+import com.cookie.rentall.services.FilesStorageService;
 import com.cookie.rentall.views.ProductShortView;
 import com.cookie.rentall.views.ProductStatusView;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
+import org.springframework.core.io.Resource;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.JavaMailSenderImpl;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.mvc.method.annotation.MvcUriComponentsBuilder;
 
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 import java.util.Properties;
+import java.util.stream.Collectors;
 
 @CrossOrigin
 @RestController
@@ -41,6 +51,11 @@ public class ProductController {
     private UserRepository userRepository;
     @Autowired
     private JavaMailSender emailSender;
+
+    @Autowired
+    FilesStorageService storageService;
+
+    private String imageUrl;
 
     private void sendSimpleMessage(
             String to, String subject, String text) {
@@ -145,6 +160,10 @@ public class ProductController {
         product.setPhoneNumber(request.phoneNumber);
         product.setUnitPrice(request.unitPrice);
         product.setUserId(getUserId());
+        if(this.imageUrl != null) {
+            product.setImageUrl(this.imageUrl);
+        }
+
         if (request.category != null) {
             ProductCategory productCategory = productCategoryRepository.findProductCategoryByCategoryName(request.category);
             if (productCategory != null) {
@@ -153,6 +172,8 @@ public class ProductController {
         }
         productRepository.save(product);
         request.id = product.getId();
+        this.imageUrl = null;
+
         return request;
     }
 
@@ -228,5 +249,42 @@ public class ProductController {
         } catch (Exception e) {
             return null;
         }
+    }
+
+
+    @PostMapping("api/upload")
+    public ResponseEntity<ResponseMessage> uploadFile(@RequestParam("file") MultipartFile file) {
+        String message = "";
+
+        try {
+
+            storageService.save(file);
+            message = "Upload the file successfully. ";
+            this.imageUrl = "http://localhost:8080/api/files/" + file.getOriginalFilename();
+            return ResponseEntity.status(HttpStatus.OK).body(new ResponseMessage(message));
+        } catch (Exception e) {
+            message="Could not upload the file: " + file.getOriginalFilename() + "!";
+            return ResponseEntity.status(HttpStatus.EXPECTATION_FAILED).body(new ResponseMessage(message));
+        }
+    }
+
+
+    @GetMapping("api/files/{filename:.+}")
+    public ResponseEntity<Resource> getFile(@PathVariable String filename) {
+        Resource file = storageService.load(filename);
+        return ResponseEntity.ok()
+                .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"" + file.getFilename() + "\"").body(file);
+    }
+
+    @GetMapping("api/files")
+    public ResponseEntity<List<FileInfo>> getListFiles() {
+        List<FileInfo> fileInfos = storageService.loadAll().map(path -> {
+            String filename = path.getFileName().toString();
+            String url = MvcUriComponentsBuilder
+                    .fromMethodName(ProductController.class, "getFile", path.getFileName().toString()).build().toString();
+            return new FileInfo(filename, url);
+        }).collect(Collectors.toList());
+
+        return ResponseEntity.status(HttpStatus.OK).body(fileInfos);
     }
 }
