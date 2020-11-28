@@ -28,11 +28,20 @@ import { FreeComponent } from './owner-products/free/free.component';
 import { ConsumerReservedComponent } from './consumer-products/consumer-reserved/consumer-reserved.component';
 import { ConsumerBookedComponent } from './consumer-products/consumer-booked/consumer-booked.component';
 import { ConsumerFreeComponent } from './consumer-products/consumer-free/consumer-free.component';
+import { MaterialModule } from './material.module';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { BookingListComponent } from './booking-list/booking-list.component';
+import { BookingItemComponent } from './booking-list/booking-item/booking-item.component';
+import { ConsumerToReturnComponent } from './consumer-products/consumer-to-return/consumer-to-return.component';
+import { OwnerToReturnComponent } from './owner-products/owner-to-return/owner-to-return.component';
+
+
 
 const productRoutes: Routes = [
   // {path: 'citySearch/:keyword/products/:id', component: ProductDetailsComponent},
   {path: 'citySearch/:cityName', component: ProductListComponent},
-  {path: ':id', component: ProductDetailsComponent},
+  {path: ':id', component: BookingItemComponent},
+  {path: 'product/:id', component: ProductDetailsComponent},
   // {path: ':id/products/:id', component: ProductDetailsComponent},
   //{path: 'search/:keyword/products/:id', component: ProductDetailsComponent},
   {path: 'search/:keyword', component: ProductListComponent},
@@ -46,6 +55,7 @@ const ownerProductRoutes: Routes = [
   { path: '', redirectTo: 'booked', pathMatch: 'full' },
   {path: 'reserved', component: ReservedComponent},
   {path: 'booked', component: BookedComponent},
+  {path: 'toret', component: OwnerToReturnComponent},
   {path: 'free', component: FreeComponent}
 ];
 
@@ -53,6 +63,7 @@ const consumerProductRoutes: Routes = [
   { path: '', redirectTo: 'booked', pathMatch: 'full' },
   {path: 'reserved', component: ConsumerReservedComponent},
   {path: 'booked', component: ConsumerBookedComponent},
+  {path: 'toreturn', component: ConsumerToReturnComponent},
   {path: 'free', component: ConsumerFreeComponent}
 ];
 
@@ -64,6 +75,7 @@ const routes: Routes = [
   {path: 'owner', component: OwnerProductsComponent, children: ownerProductRoutes},
   {path: 'consumer', component: ConsumerProductsComponent, children: consumerProductRoutes}
 ];
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -82,7 +94,11 @@ const routes: Routes = [
     FreeComponent,
     ConsumerReservedComponent,
     ConsumerBookedComponent,
-    ConsumerFreeComponent
+    ConsumerFreeComponent,
+    BookingListComponent,
+    BookingItemComponent,
+    ConsumerToReturnComponent,
+    OwnerToReturnComponent
   ],
   imports: [
     BrowserModule,
@@ -92,7 +108,6 @@ const routes: Routes = [
     ReactiveFormsModule,
     NgbModule,
     FormsModule,
-    MaterialModule
     MaterialModule,
     FontAwesomeModule
   ],
